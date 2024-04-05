@@ -2,6 +2,7 @@
 // print_r($_POST); // $_GET;
 // echo json_encode($_POST);
 
+global $host, $user, $passwd, $db;
 $data = json_decode(file_get_contents('php://input'), true);
 include('../hidden.php');
 

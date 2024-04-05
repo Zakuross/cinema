@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.9.11
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Czas generowania: 17 Sie 2023, 17:02
--- Wersja serwera: 8.0.32
--- Wersja PHP: 7.4.33
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +12,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `cinema`
+
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `films`
+
 --
 
 CREATE TABLE `films` (
@@ -34,7 +27,7 @@ CREATE TABLE `films` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `films`
+
 --
 
 INSERT INTO `films` (`id`, `title`) VALUES
@@ -44,7 +37,7 @@ INSERT INTO `films` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `reservations`
+
 --
 
 CREATE TABLE `reservations` (
@@ -55,7 +48,7 @@ CREATE TABLE `reservations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `reservations`
+
 --
 
 INSERT INTO `reservations` (`id`, `user_id`, `screening_id`, `place`) VALUES
@@ -93,7 +86,7 @@ INSERT INTO `reservations` (`id`, `user_id`, `screening_id`, `place`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `screenings`
+
 --
 
 CREATE TABLE `screenings` (
@@ -104,7 +97,7 @@ CREATE TABLE `screenings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `screenings`
+
 --
 
 INSERT INTO `screenings` (`id`, `film_id`, `date`, `time`) VALUES
@@ -128,7 +121,7 @@ INSERT INTO `screenings` (`id`, `film_id`, `date`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `users`
+
 --
 
 CREATE TABLE `users` (
@@ -139,7 +132,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `users`
+
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `number`) VALUES
@@ -148,17 +141,17 @@ INSERT INTO `users` (`id`, `login`, `password`, `number`) VALUES
 (14, 'asd', 'f10e2821bbbea527ea02200352313bc059445190', '123321123');
 
 --
--- Indeksy dla zrzutów tabel
+
 --
 
 --
--- Indeksy dla tabeli `films`
+
 --
 ALTER TABLE `films`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `reservations`
+
 --
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`id`),
@@ -166,59 +159,59 @@ ALTER TABLE `reservations`
   ADD KEY `screening` (`screening_id`);
 
 --
--- Indeksy dla tabeli `screenings`
+
 --
 ALTER TABLE `screenings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `film` (`film_id`);
 
 --
--- Indeksy dla tabeli `users`
+
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+
 --
 
 --
--- AUTO_INCREMENT dla tabeli `films`
+
 --
 ALTER TABLE `films`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT dla tabeli `reservations`
+
 --
 ALTER TABLE `reservations`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT dla tabeli `screenings`
+
 --
 ALTER TABLE `screenings`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT dla tabeli `users`
+
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- Ograniczenia dla zrzutów tabel
+
 --
 
 --
--- Ograniczenia dla tabeli `reservations`
+
 --
 ALTER TABLE `reservations`
   ADD CONSTRAINT `screening` FOREIGN KEY (`screening_id`) REFERENCES `screenings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ograniczenia dla tabeli `screenings`
+
 --
 ALTER TABLE `screenings`
   ADD CONSTRAINT `film` FOREIGN KEY (`film_id`) REFERENCES `films` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

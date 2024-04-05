@@ -1,4 +1,5 @@
 <?php
+global $host, $user, $passwd, $db;
 $data = json_decode(file_get_contents('php://input'), true);
 include('./hidden.php');
 
